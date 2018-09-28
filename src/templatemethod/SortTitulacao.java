@@ -4,7 +4,7 @@ public class SortTitulacao extends Sort{
 
     @Override
     public boolean compare(Professor a, Professor b) {
-        int comp = a.getHorista().compareTo(b.getHorista());
+        int comp = a.getTitulacao().compareTo(b.getTitulacao());
         return comp < 0;
     }
     

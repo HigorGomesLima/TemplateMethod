@@ -1,29 +1,29 @@
 package templatemethod;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Tela extends javax.swing.JFrame {
     
     List<Professor> dadosProf;
+    List<String> ordem;
 
     public Tela() {
         initComponents();
         PersistenciaLista dados = new PersistenciaLista();
         dadosProf = dados.getLista();
+        ordem = new ArrayList<>();
         DefaultTableModel model = (DefaultTableModel) grid_Dados.getModel();
         Iterator<Professor> it = dados.getDados();
-        //List<Professor> teste = new SortDepart().bubbleSort(dados.getLista());
-        //Iterator<Professor> it = teste.iterator();
         while(it.hasNext()){
             Professor aux = it.next();
             String[] x = {aux.getMatricula(),aux.getNome(),aux.getDepartamento(),aux.getTitulacao(),aux.getHorista()};
             model.addRow(x);
         }
-        //String postagem = novaPostagem.getText();
-        //model.add(postagem);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,12 +33,17 @@ public class Tela extends javax.swing.JFrame {
         labelTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         grid_Dados = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        check_nome = new javax.swing.JCheckBox();
+        labe_nome = new javax.swing.JLabel();
+        check_matricula = new javax.swing.JCheckBox();
+        labe_matricula = new javax.swing.JLabel();
+        check_departamento = new javax.swing.JCheckBox();
+        labe_departamento = new javax.swing.JLabel();
+        check_titulacao = new javax.swing.JCheckBox();
+        labe_titulacao = new javax.swing.JLabel();
+        check_horista = new javax.swing.JCheckBox();
+        labe_horista = new javax.swing.JLabel();
+        att = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuMain = new javax.swing.JMenu();
 
@@ -71,20 +76,60 @@ public class Tela extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(grid_Dados);
 
-        jCheckBox1.setText("Ord. Nome");
+        check_nome.setText("Nome");
+        check_nome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_nomeMouseClicked(evt);
+            }
+        });
 
-        jCheckBox2.setText("Ord. Matricula");
+        labe_nome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labe_nome.setText(" ");
 
-        jCheckBox3.setText("Ord. Titulacao");
+        check_matricula.setText("Matricula");
+        check_matricula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_matriculaMouseClicked(evt);
+            }
+        });
 
-        jCheckBox4.setText("Ord. Departamento");
+        labe_matricula.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labe_matricula.setText(" ");
 
-        jCheckBox5.setText("Ord. Horista");
+        check_departamento.setText("Departamento");
+        check_departamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_departamentoMouseClicked(evt);
+            }
+        });
 
-        jToggleButton1.setText("Atualizar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        labe_departamento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labe_departamento.setText(" ");
+
+        check_titulacao.setText("Titulacao");
+        check_titulacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_titulacaoMouseClicked(evt);
+            }
+        });
+
+        labe_titulacao.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labe_titulacao.setText(" ");
+
+        check_horista.setText("Horista");
+        check_horista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                check_horistaMouseClicked(evt);
+            }
+        });
+
+        labe_horista.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labe_horista.setText(" ");
+
+        att.setText("Atualizar");
+        att.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                attActionPerformed(evt);
             }
         });
 
@@ -98,29 +143,41 @@ public class Tela extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(236, 236, 236)
-                .addComponent(labelTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox3)
-                                .addGap(30, 30, 30)
-                                .addComponent(jCheckBox5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCheckBox2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBox4)
-                                .addGap(26, 26, 26)
-                                .addComponent(jToggleButton1)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(labelTitle)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labe_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(check_nome)
+                        .addGap(36, 36, 36)
+                        .addComponent(labe_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(check_departamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labe_horista, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labe_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(check_matricula)
+                        .addGap(18, 18, 18)
+                        .addComponent(labe_titulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(check_titulacao)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(att)
+                    .addComponent(check_horista))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,48 +185,144 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(labelTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(check_nome)
+                    .addComponent(labe_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(check_horista)
+                        .addComponent(labe_horista, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(check_departamento)
+                            .addComponent(labe_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(check_matricula)
+                    .addComponent(labe_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jCheckBox2)
-                        .addComponent(jCheckBox4))
-                    .addComponent(jToggleButton1))
-                .addGap(0, 17, Short.MAX_VALUE))
+                        .addComponent(check_titulacao)
+                        .addComponent(labe_titulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(att)))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        if(this.jCheckBox1.isSelected())
-            dadosProf = new SortNome().bubbleSort(dadosProf);
-        if(this.jCheckBox2.isSelected())
-            dadosProf = new SortMatricula().bubbleSort(dadosProf);
-        if(this.jCheckBox3.isSelected())
-            dadosProf = new SortTitulacao().bubbleSort(dadosProf);
-        if(this.jCheckBox4.isSelected())
-            dadosProf = new SortDepart().bubbleSort(dadosProf);
-        if(this.jCheckBox5.isSelected())
-            dadosProf = new SortHorst().bubbleSort(dadosProf);
-        
+    private void check_nomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_nomeMouseClicked
+        if(this.check_nome.isSelected()){
+            ordem.add("nome");
+        }else{
+            if(ordem.indexOf("nome")>=0)
+                ordem.remove(ordem.indexOf("nome"));
+        }
+        setLabel();
+    }//GEN-LAST:event_check_nomeMouseClicked
+
+    private void check_matriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_matriculaMouseClicked
+        if(this.check_matricula.isSelected()){
+            ordem.add("mat");
+        }else{
+            if(ordem.indexOf("mat")>=0)
+                ordem.remove(ordem.indexOf("mat"));
+        }
+        setLabel();
+    }//GEN-LAST:event_check_matriculaMouseClicked
+
+    private void check_departamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_departamentoMouseClicked
+        if(this.check_departamento.isSelected()){
+            ordem.add("dep");
+        }else{
+            if(ordem.indexOf("dep")>=0)
+                ordem.remove(ordem.indexOf("dep"));
+        }
+        setLabel();
+    }//GEN-LAST:event_check_departamentoMouseClicked
+
+    private void check_titulacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_titulacaoMouseClicked
+        if(this.check_titulacao.isSelected()){
+            ordem.add("tit");
+        }else{
+            if(ordem.indexOf("tit")>=0)
+                ordem.remove(ordem.indexOf("tit"));
+        }
+        setLabel();
+    }//GEN-LAST:event_check_titulacaoMouseClicked
+
+    private void check_horistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_horistaMouseClicked
+        if(this.check_horista.isSelected()){
+            ordem.add("hrs");
+        }else{
+            if(ordem.indexOf("hrs")>=0)
+                ordem.remove(ordem.indexOf("hrs"));
+        }
+        setLabel();
+    }//GEN-LAST:event_check_horistaMouseClicked
+
+    private void attActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attActionPerformed
+        for(int i = ordem.size()-1;i >= 0; i--){
+            String aux = ordem.get(i);
+            switch (aux){
+                case "nome":
+                    dadosProf = new SortNome().bubbleSort(dadosProf);
+                    break;
+                case "dep":
+                    dadosProf = new SortDepart().bubbleSort(dadosProf);
+                    break;
+                case "tit":
+                    dadosProf = new SortTitulacao().bubbleSort(dadosProf);
+                    break;
+                case "hrs":
+                    dadosProf = new SortHorst().bubbleSort(dadosProf);
+                    break;
+                case "mat":
+                    dadosProf = new SortMatricula().bubbleSort(dadosProf);
+                    break;
+            }
+        }
+        plotGrid();
+    }//GEN-LAST:event_attActionPerformed
+
+    public void plotGrid(){
         DefaultTableModel model = (DefaultTableModel) grid_Dados.getModel();
         Iterator<Professor> it = dadosProf.iterator();
-        for(int i = 1; i <= model.getRowCount();i++){
-            model.removeRow(i);
+        while(grid_Dados.getModel().getRowCount() > 0){
+            ((DefaultTableModel) grid_Dados.getModel()).removeRow(0);
         }
-        int i = 0;
-          while(it.hasNext()){
+        while(it.hasNext()){
             Professor aux = it.next();
             String[] x = {aux.getMatricula(),aux.getNome(),aux.getDepartamento(),aux.getTitulacao(),aux.getHorista()};
             model.addRow(x);
         }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
+    }
+    
+    public void setLabel(){
+        labe_nome.setText("");
+        labe_departamento.setText("");
+        labe_titulacao.setText("");
+        labe_horista.setText("");
+        labe_matricula.setText("");
+        for(int i = 0;i < ordem.size(); i++){
+            String aux = ordem.get(i);
+            switch (aux){
+                case "nome":
+                    labe_nome.setText((i+1)+"");
+                    break;
+                case "dep":
+                    labe_departamento.setText((i+1)+"");
+                    break;
+                case "tit":
+                    labe_titulacao.setText((i+1)+"");
+                    break;
+                case "hrs":
+                    labe_horista.setText((i+1)+"");
+                    break;
+                case "mat":
+                    labe_matricula.setText((i+1)+"");
+                    break;
+            }
+        }
+    }
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -180,15 +333,20 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton att;
+    private javax.swing.JCheckBox check_departamento;
+    private javax.swing.JCheckBox check_horista;
+    private javax.swing.JCheckBox check_matricula;
+    private javax.swing.JCheckBox check_nome;
+    private javax.swing.JCheckBox check_titulacao;
     private javax.swing.JTable grid_Dados;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel labe_departamento;
+    private javax.swing.JLabel labe_horista;
+    private javax.swing.JLabel labe_matricula;
+    private javax.swing.JLabel labe_nome;
+    private javax.swing.JLabel labe_titulacao;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JMenu menuMain;
     // End of variables declaration//GEN-END:variables
