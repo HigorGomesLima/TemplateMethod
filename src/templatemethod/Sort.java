@@ -4,15 +4,28 @@ import java.util.List;
 
 public abstract class Sort {
     
-    public List<Professor> bubbleSort(List<Professor> dados){
+    public List<Professor> insertSort(List<Professor> dados){
         for(int i = 0;i < dados.size(); i++){
-            for(int j = i+1;j < dados.size(); j++){
-                if(compare(dados.get(j),dados.get(i))){
-                    Professor aux = dados.get(i);
-                    dados.set(i, dados.get(j));
-                    dados.set(j, aux);
-                }
+            Professor aux = dados.get(i);
+            int j = i;
+            while((j > 0) && (compare(dados.get(j-1),aux))){
+                dados.set(j, dados.get(j-1));
+                j -= 1;
             }
+            dados.set(j, aux);
+        }
+        return dados;
+    }
+    
+    public List<Professor> insertSortD(List<Professor> dados){
+        for(int i = 0;i < dados.size(); i++){
+            Professor aux = dados.get(i);
+            int j = i;
+            while((j > 0) && (!compare(dados.get(j-1),aux))){
+                dados.set(j, dados.get(j-1));
+                j -= 1;
+            }
+            dados.set(j, aux);
         }
         return dados;
     }

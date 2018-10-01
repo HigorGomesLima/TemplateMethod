@@ -186,23 +186,25 @@ public class Tela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_nome)
-                    .addComponent(labe_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(check_departamento)
+                        .addComponent(labe_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(check_horista)
-                        .addComponent(labe_horista, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(check_departamento)
-                            .addComponent(labe_departamento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(labe_horista, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(check_nome)
+                        .addComponent(labe_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(check_matricula)
-                    .addComponent(labe_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(check_titulacao)
                         .addComponent(labe_titulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(att)))
+                        .addComponent(att))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(check_matricula)
+                        .addComponent(labe_matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -264,19 +266,34 @@ public class Tela extends javax.swing.JFrame {
             String aux = ordem.get(i);
             switch (aux){
                 case "nome":
-                    dadosProf = new SortNome().bubbleSort(dadosProf);
+                    if((i%2 == 1) || ((ordem.size() > 1) && (i == 0)))
+                        dadosProf = new SortNome().insertSort(dadosProf);
+                    else
+                        dadosProf = new SortNome().insertSortD(dadosProf);
                     break;
                 case "dep":
-                    dadosProf = new SortDepart().bubbleSort(dadosProf);
+                    if(i%2 == 1)
+                        dadosProf = new SortDepart().insertSort(dadosProf);
+                    else
+                        dadosProf = new SortDepart().insertSortD(dadosProf);
                     break;
                 case "tit":
-                    dadosProf = new SortTitulacao().bubbleSort(dadosProf);
+                    if(i%2 == 1)
+                        dadosProf = new SortTitulacao().insertSort(dadosProf);
+                    else
+                        dadosProf = new SortTitulacao().insertSortD(dadosProf);
                     break;
                 case "hrs":
-                    dadosProf = new SortHorst().bubbleSort(dadosProf);
+                    if(i%2 == 1)
+                        dadosProf = new SortHorst().insertSort(dadosProf);
+                    else
+                        dadosProf = new SortHorst().insertSortD(dadosProf);
                     break;
                 case "mat":
-                    dadosProf = new SortMatricula().bubbleSort(dadosProf);
+                    if(i%2 == 1)
+                        dadosProf = new SortMatricula().insertSort(dadosProf);
+                    else
+                        dadosProf = new SortMatricula().insertSortD(dadosProf);
                     break;
             }
         }
