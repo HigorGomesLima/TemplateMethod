@@ -4,8 +4,9 @@ public class SortMatricula extends Sort{
 
     @Override
     public boolean compare(Professor a, Professor b) {
-        int comp = a.getMatricula().compareTo(b.getMatricula());
-        return comp < 0;
+        int compA = Integer.valueOf(a.getMatricula());
+        int compB = Integer.valueOf(b.getMatricula());
+        return compA < compB;
     }
     
 }
