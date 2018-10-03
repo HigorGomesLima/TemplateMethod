@@ -3,7 +3,6 @@ package templatemethod;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -212,6 +211,7 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void check_nomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_check_nomeMouseClicked
+        
         if(this.check_nome.isSelected()){
             ordem.add("nome");
         }else{
@@ -266,31 +266,31 @@ public class Tela extends javax.swing.JFrame {
             String aux = ordem.get(i);
             switch (aux){
                 case "nome":
-                    if((i%2 == 1) || ((ordem.size() > 1) && (i == 0)))
+                    if((i%2 == 1) || (i == 2))
                         dadosProf = new SortNome().insertSort(dadosProf);
                     else
                         dadosProf = new SortNome().insertSortD(dadosProf);
                     break;
                 case "dep":
-                    if(i%2 == 1)
+                    if((i%2 == 1) || (i == 2))
                         dadosProf = new SortDepart().insertSort(dadosProf);
                     else
                         dadosProf = new SortDepart().insertSortD(dadosProf);
                     break;
                 case "tit":
-                    if(i%2 == 1)
+                    if((i%2 == 1) || (i == 2))
                         dadosProf = new SortTitulacao().insertSort(dadosProf);
                     else
                         dadosProf = new SortTitulacao().insertSortD(dadosProf);
                     break;
                 case "hrs":
-                    if(i%2 == 1)
+                    if((i%2 == 1) || (i == 2))
                         dadosProf = new SortHorst().insertSort(dadosProf);
                     else
                         dadosProf = new SortHorst().insertSortD(dadosProf);
                     break;
                 case "mat":
-                    if(i%2 == 1)
+                    if((i%2 == 1) || (i == 2))
                         dadosProf = new SortMatricula().insertSort(dadosProf);
                     else
                         dadosProf = new SortMatricula().insertSortD(dadosProf);
